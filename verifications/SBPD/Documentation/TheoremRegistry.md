@@ -1,4 +1,6 @@
-# SBPD 定理注册表
+# SBPD 局部定理注册表
+
+本表只登记 Lean 已检查的局部定理，不表示论文级验证已经完成。论文等价性缺口见 `VerificationStatus.md` 和 `EquationMap.md`。
 
 | 定理 | 内容 | 类型 |
 | --- | --- | --- |

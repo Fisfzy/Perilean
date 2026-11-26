@@ -22,7 +22,7 @@ lake build
 
 文献对应关系见 `Documentation/LiteratureAlignment.md`。PMB 力、势能和断键状态均显式受 `isBond` 的 horizon 邻域约束。
 
-## 当前已形式化的内容
+## 当前已形式化的局部内容
 
 - 交换粒子后参考键、相对位移和变形键的反对称性。
 - 近场关系的交换对称性。
@@ -38,4 +38,4 @@ lake build
 
 连续体积分、Bochner 积分、连续能量守恒、局部极限和时间积分稳定性暂未作为已证明结论发布，具体边界见 `Documentation/BBPD-Specification.md`。
 
-三维微模量和断裂能模块验证的是文献公式在 Lean 中的代数一致性。球坐标积分、能量等效和裂面几何积分仍属于后续分析证明任务。
+三维微模量和断裂能模块目前只验证文献公式的代数定义和反解恒等式，不等于完成球坐标积分、能量等效和裂面几何积分的论文级证明。完整边界见 `Documentation/LiteratureAlignment.md`。
