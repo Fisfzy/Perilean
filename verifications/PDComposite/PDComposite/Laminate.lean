@@ -1,7 +1,8 @@
-import PeriLean.SBPD.Composite
+import PDComposite.Composite
 
-namespace PeriLean
-namespace SBPD
+namespace PDComposite
+
+open PeriLean.SBPD
 
 abbrev Vec3 := Fin 3 → ℝ
 abbrev Mat3 := Matrix (Fin 3) (Fin 3) ℝ
@@ -97,5 +98,4 @@ theorem bendingMoment_zero_of_zero_curvature (B D : Mat3) (membraneStrain : Vec3
     bendingMomentResultant B D membraneStrain 0 = Matrix.mulVec B membraneStrain := by
   simp [bendingMomentResultant]
 
-end SBPD
-end PeriLean
+end PDComposite

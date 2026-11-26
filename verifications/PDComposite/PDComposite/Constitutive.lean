@@ -1,7 +1,8 @@
 import PeriLean.SBPD.Basic
 
-namespace PeriLean
-namespace SBPD
+namespace PDComposite
+
+open PeriLean.SBPD
 
 structure PlaneStrain where
   e1 : ℝ
@@ -143,5 +144,4 @@ theorem pairHoffmanFailed_swap {N : ℕ} (strength : HoffmanStrengths)
   unfold pairHoffmanFailed
   rw [pairHoffmanIndex_swap]
 
-end SBPD
-end PeriLean
+end PDComposite

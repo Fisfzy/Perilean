@@ -1,4 +1,4 @@
-# SBPD 文献对应关系
+# PDComposite 文献对应关系
 
 ## 采用的来源
 
@@ -11,9 +11,9 @@
 
 下表中的“已定义”只表示代码中存在相应符号，不表示已经证明与论文的连续方程或离散算法完全等价。
 
-| 文献内容 | SBPD 形式化位置 | 状态 |
+| 文献内容 | PDComposite 形式化位置 | 状态 |
 | --- | --- | --- |
-| 离散物质点、参考键和变形键 | `PeriLean.SBPD.Basic` | 已定义并证明交换反对称性 |
+| 离散物质点、参考键和变形键 | `SBPD.Basic` | 由 SBPD 核心包提供 |
 | 形状张量 `K` | `shapeTensor` | 已定义 |
 | 非局部变形梯度 `F̄ = (...) K⁻¹` | `deformationNumerator`、`deformationGradient` | 已定义；在逆证书下证明重构恒等式 |
 | 力态 `T = ω σ̂ K X` 的离散形式 | `forceState`、`paperForceState`、`paperForceState_formula` | 论文应力测度和有限点表达式已证明展开 |
@@ -31,7 +31,7 @@
 
 ## 与 BBPD 的关系
 
-BBPD 的有限粒子几何、PMB 键力、键势能和离散平衡与上述文献的基础离散框架一致。PMB 作用现在显式要求 `isBond`，因此非邻域粒子不会产生键力或键势能。SBPD 独立定义自己的状态系统和力态接口，不通过导入 BBPD 或 SolidMechanics 复用类型。
+SBPD 提供有限粒子几何、状态系统、论文力态和离散平衡接口。PDComposite 在此基础上定义复合材料本构、铺层、断裂和损伤，不导入 BBPD 或 SolidMechanics。
 
 ## 尚未宣称的结论
 

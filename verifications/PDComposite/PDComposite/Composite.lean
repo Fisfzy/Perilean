@@ -1,7 +1,8 @@
-import PeriLean.SBPD.Constitutive
+import PDComposite.Constitutive
 
-namespace PeriLean
-namespace SBPD
+namespace PDComposite
+
+open PeriLean.SBPD
 
 structure Lamina where
   material : OrthotropicPlaneStress
@@ -70,5 +71,4 @@ theorem laminaStress_zero (lamina : Lamina) :
     laminaStress lamina ⟨0, 0, 0⟩ = ⟨0, 0, 0⟩ := by
   simp [laminaStress, orthotropicStress, rotateStress]
 
-end SBPD
-end PeriLean
+end PDComposite

@@ -1,7 +1,8 @@
-import PeriLean.SBPD.Composite
+import PDComposite.Composite
 
-namespace PeriLean
-namespace SBPD
+namespace PDComposite
+
+open PeriLean.SBPD
 
 noncomputable def neighborVolume {N : ℕ} (system : StateSystem N)
     (i : Fin N) : ℝ := by
@@ -104,5 +105,4 @@ theorem updateAlive_irreversible {N : ℕ}
   intro h
   exact updateAlive_implies_old_alive alive failed h
 
-end SBPD
-end PeriLean
+end PDComposite

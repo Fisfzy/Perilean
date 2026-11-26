@@ -6,7 +6,8 @@ PeriLean 是基于 Lean 4 和 Mathlib 的近场动力学形式化验证项目。
 
 - `packages/SolidMechanics`：固体力学基础验证包。
 - `verifications/BBPD`：独立的键型近场动力学 BB-PD 基础验证包，直接依赖固定版本的 Mathlib。
-- `verifications/SBPD`：独立的态型近场动力学 SBPD 基础验证包，直接依赖固定版本的 Mathlib。
+- `verifications/SBPD`：独立的通用态型近场动力学 SBPD 核心验证包，直接依赖固定版本的 Mathlib。
+- `verifications/PDComposite`：独立的复合材料近场动力学扩展包，依赖 SBPD 核心接口，不依赖 BBPD 或 SolidMechanics。
 
 ## BBPD 构建
 
@@ -24,6 +25,16 @@ cd verifications/SBPD
 lake build
 ```
 
-SBPD 当前提供有限粒子态型方程、论文应力测度与力态展开、形状张量与非局部变形梯度、正交各向异性单层本构、`A/B/D` 与弯矩结果函数、Hoffman 指标、PMB/复材断裂参数公式、层内/层间键分类和离散损伤边界的基础形式化片段。它尚未完成与论文连续积分和数值算法逐公式等价的完整证明。
+SBPD 当前提供有限粒子态型方程、论文应力测度与力态展开、形状张量、非局部变形梯度和离散线动量平衡。复材本构、`A/B/D`、弯矩结果、Hoffman 指标、断裂参数和损伤边界已移入独立的 PDComposite 包。
+
+## PDComposite 构建
+
+```powershell
+cd verifications/PDComposite
+lake build
+lake env lean PDComposite/AxiomAudit.lean
+```
+
+PDComposite 承载复合材料态型 PD 的本构、铺层、弯矩、断裂和损伤形式化模块。
 
 连续 Bochner 积分、球坐标标定积分、局部极限、时间积分稳定性和浮点求解器验证属于后续模块。

@@ -1,7 +1,6 @@
-import PeriLean.SBPD.Constitutive
+import PDComposite.Constitutive
 
-namespace PeriLean
-namespace SBPD
+namespace PDComposite
 
 noncomputable def pmb3DMicromodulus (bulkModulus horizon : ℝ) : ℝ :=
   18 * bulkModulus / (Real.pi * horizon ^ 4)
@@ -102,5 +101,4 @@ theorem bkCriticalEnergy_pure_mode_II {GIc GIIc GT eta : ℝ}
   rw [hratio, Real.one_rpow]
   ring
 
-end SBPD
-end PeriLean
+end PDComposite
