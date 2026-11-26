@@ -1,0 +1,25 @@
+import ContinuumMechanics.Tensor.Second
+import ContinuumMechanics.Tensor.Invariants
+import ContinuumMechanics.Kinematics.Strain
+import ContinuumMechanics.Stress.Cauchy
+import ContinuumMechanics.Stress.Mohr
+import ContinuumMechanics.Constitutive.LinearIsotropic
+import ContinuumMechanics.Constitutive.Plasticity
+import ContinuumMechanics.Elastostatics.Basic
+import ContinuumMechanics.Elastostatics.NavierLame
+import ContinuumMechanics.Elastostatics.Korn
+import ContinuumMechanics.Elastostatics.Variational
+import ContinuumMechanics.Beams.EulerBernoulli.Basic
+import ContinuumMechanics.Beams.Timoshenko.Basic
+import ContinuumMechanics.Plates.KirchhoffLove
+import ContinuumMechanics.Plates.MindlinReissner
+import ContinuumMechanics.Contact.Hertz
+import ContinuumMechanics.Fracture.Basic
+import ContinuumMechanics.Thermal.Thermoelastic
+
+namespace SolidMechanics
+
+theorem linear_isotropic_entry : True := by
+  trivial
+
+end SolidMechanics

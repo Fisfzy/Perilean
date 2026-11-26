@@ -1,0 +1,16 @@
+name = "BBPD"
+version = "0.1.0"
+defaultTargets = ["PeriLean", "BBPD"]
+
+[leanOptions]
+maxHeartbeats = 1000000
+
+[[require]]
+name = "SolidMechanics"
+path = "../../packages/SolidMechanics"
+
+[[lean_lib]]
+name = "PeriLean"
+
+[[lean_lib]]
+name = "BBPD"

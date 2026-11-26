@@ -1,0 +1,11 @@
+.lake/
+**/.lake/
+build/
+**/build/
+*.olean
+*.ilean
+*.trace
+*.c
+*.tgz
+*.zip
+*.log
