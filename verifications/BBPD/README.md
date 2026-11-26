@@ -20,6 +20,8 @@ lake build
 - `PeriLean.BBPD.Dynamics`：离散运动方程谓词、惯性力和外力平衡。
 - `PeriLean.BBPD.Damage`：邻域体积、存活键体积和局部损伤定义及有界性。
 
+文献对应关系见 `Documentation/LiteratureAlignment.md`。PMB 力、势能和断键状态均显式受 `isBond` 的 horizon 邻域约束。
+
 ## 当前已形式化的内容
 
 - 交换粒子后参考键、相对位移和变形键的反对称性。
