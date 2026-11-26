@@ -27,6 +27,10 @@
 | C05 | PMB 单键势能非负 | `pmbBondPotential_nonneg` | `c >= 0` | 已证明 |
 | C06 | PMB 单键势能交换对称 | `pmbBondPotential_symmetric` | 端点状态对称 | 已证明 |
 | C07 | PMB 键力模长等于 `|c*s|` | `pmbForce_norm` | 当前键非零 | 已证明 |
+| C08 | PMB 存活键逐项力函数 | `pmbForce_formula_on_bond` | 有效键、存活状态 | 已证明 |
+| C09 | PMB 力函数展开到当前键方向 | `pmbForce_formula_current_direction` | C08、当前键非零 | 已证明 |
+| C10 | 中心成对力的内部力矩为零 | `pairTorque_zero_of_central_and_antisymmetric` | 三维叉积、反对称和中心力 | 已证明 |
+| C11 | PMB 三维成对力矩为零 | `pmbPairTorque_zero` | C02、C03、三维表示转换 | 已证明 |
 | D01 | PMB 更新保留存活键的旧状态 | `pmbUpdateAlive_implies_old_alive` | A11 | 已证明 |
 | D02 | PMB 更新不可逆 | `pmbUpdateAlive_is_irreversible` | D01 | 已证明 |
 | D03 | 存活键体积不超过邻域体积 | `activeVolume_le_neighborVolume` | A04, 有限权重 | 已证明 |
@@ -40,7 +44,9 @@
 | M02 | PMB 断裂能公式定义 | `pmbFractureEnergy` | 文献裂面积分结果 | 已定义 |
 | M03 | 临界伸长率反解 | `pmbFractureEnergy_of_criticalStretch` | M02, 正性 | 已证明 |
 | M04 | 三维微模量正性 | `pmb3DMicromodulus_pos` | M01, 参数正性 | 已证明 |
-| M05 | 球坐标标定和裂面积分 | `pmb_micromodulus_3d`, `criticalStretch_from_fractureEnergy` | A19, 连续积分 | 后续 |
+| M05 | 微模量代入断裂能公式 | `pmbFractureEnergy_of_bulkModulus` | M01, M02, 参数正性 | 已证明 |
+| M06 | 体积模量形式的临界伸长率 | `pmbCriticalStretch_of_bulkModulus` | M01, M03, 参数正性 | 已证明 |
+| M07 | 球坐标标定和裂面积分 | `pmb_micromodulus_3d`, `criticalStretch_from_fractureEnergy` | A19, 连续积分 | 后续 |
 | N01 | 中心差分更新方程 | `central_difference_step` | 离散运动方程 | 后续 |
 | N02 | 稳定时间步上界 | `central_difference_stable` | 线性化谱分析 | 后续 |
 | N03 | 离散一致性和收敛 | `discrete_convergence` | 正则性、网格族 | 后续 |

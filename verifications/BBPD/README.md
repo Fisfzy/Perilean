@@ -19,6 +19,7 @@ lake build
 - `PeriLean.BBPD.Calibration`：三维微模量公式和断裂能临界伸长率的代数标定恒等式。
 - `PeriLean.BBPD.Dynamics`：离散运动方程谓词、惯性力和外力平衡。
 - `PeriLean.BBPD.Damage`：邻域体积、存活键体积和局部损伤定义及有界性。
+- `PeriLean.BBPD.Moment`：三维成对力矩、中心力矩为零和角动量接口。
 
 文献对应关系见 `Documentation/LiteratureAlignment.md`。PMB 力、势能和断键状态均显式受 `isBond` 的 horizon 邻域约束。
 
@@ -32,7 +33,11 @@ lake build
 - PMB 断键后不恢复的状态更新性质。
 - PMB 单键势能非负性和端点交换对称性。
 - PMB 键力模长与 `|c*s|` 的一致性。
-- `c = 18 K / (pi * delta^4)` 和 `G_c = pi*c*s0^2*delta^5/10` 的代数定义及反解恒等式。
+- PMB 存活键上的逐项力函数公式。
+- PMB 力函数展开为 `c*s*(y_j-y_i)/||y_j-y_i||` 的当前构形形式。
+- 三维中心成对力的内部力矩为零。
+- 三维 PMB 力的成对弯矩为零。
+- `c = 18 K / (pi * delta^4)`、`G_c = pi*c*s0^2*delta^5/10`，以及代入微模量后的 `G_c = 9 K s0^2 delta/5` 和 `s0 = sqrt(5 G_c/(9 K delta))`。
 - 离散运动方程推出总惯性力等于总外力。
 - 局部损伤在有邻域时属于 `[0,1]`，无邻域时按零定义。
 

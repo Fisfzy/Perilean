@@ -74,6 +74,14 @@ e_ij = zeta_ij / ||zeta_ij||
 
 实现中用 `unitOrZero zeta_ij` 覆盖 `||zeta_ij|| = 0` 的总函数情况。
 
+在当前键非零且键存活时，`pmbForce_formula_current_direction` 将其展开为
+
+```text
+f_ij = c * s_ij / ||y_j - y_i|| • (y_j - y_i)
+```
+
+三维 `pmbPairTorque_zero` 进一步证明中心键力和反对称性导致成对内部弯矩为零。
+
 与 Silling–Askari 2005 的 PMB 公式逐项对应：文献中的标量函数为 `g(s) = c*s`，历史因子为 `l_ij`，向量成对力为 `g(s_ij) l_ij e_ij`。本包把 `l_ij` 表示为布尔状态 `alive_ij`，并把 `e_ij` 表示为 `unitOrZero zeta_ij`。在当前键长非零且键存活时，`pmbForce` 与文献公式完全相同。`pmbForce_norm` 还验证了其模长为 `|c*s_ij|`。
 
 引入历史变量 `alive_ij` 后，力为零的断键不再承载力。更新规则采用文献中的严格失效条件：
@@ -99,6 +107,14 @@ alive_new_ij = alive_old_ij and (s_ij <= s0)
 c = 18 K / (pi * delta^4)
 G_c = pi * c * s0^2 * delta^5 / 10
 s0 = sqrt(10 G_c / (pi * c * delta^5))
+```
+
+把三维微模量代入断裂能后，Lean 定理 `pmbFractureEnergy_of_bulkModulus` 和
+`pmbCriticalStretch_of_bulkModulus` 给出论文常用的等价形式
+
+```text
+G_c = 9 K s0^2 delta / 5
+s0 = sqrt(5 G_c / (9 K delta))
 ```
 
 这里的第一式依赖三维各向同性中心力 PMB 和均匀膨胀能量等效。仅凭均匀膨胀不能推出一般各向同性线弹性的两个独立参数。剪切响应还会导出键型模型的泊松比限制，因此标定模块必须同时记录体积和剪切检验。

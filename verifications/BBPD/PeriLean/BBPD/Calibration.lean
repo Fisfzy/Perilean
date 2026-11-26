@@ -33,6 +33,23 @@ theorem pmbFractureEnergy_of_criticalStretch {G c delta : ℝ}
   rw [pmbCriticalStretch_sq hG hc hd]
   field_simp
 
+theorem pmbFractureEnergy_of_bulkModulus {K s0 delta : ℝ}
+    (hK : 0 < K) (hd : 0 < delta) :
+    pmbFractureEnergy (pmb3DMicromodulus K delta) s0 delta =
+      (9 / 5 : ℝ) * K * s0 ^ 2 * delta := by
+  unfold pmbFractureEnergy pmb3DMicromodulus
+  field_simp [ne_of_gt hK, ne_of_gt hd, ne_of_gt Real.pi_pos]
+  ring
+
+theorem pmbCriticalStretch_of_bulkModulus {G K delta : ℝ}
+    (hG : 0 ≤ G) (hK : 0 < K) (hd : 0 < delta) :
+    pmbCriticalStretch G (pmb3DMicromodulus K delta) delta =
+      Real.sqrt (5 * G / (9 * K * delta)) := by
+  unfold pmbCriticalStretch pmb3DMicromodulus
+  congr 1
+  field_simp [ne_of_gt hK, ne_of_gt hd, ne_of_gt Real.pi_pos]
+  ring
+
 theorem pmb3DMicromodulus_pos {K delta : ℝ}
     (hK : 0 < K) (hd : 0 < delta) :
     0 < pmb3DMicromodulus K delta := by

@@ -128,6 +128,37 @@ def forceState {N : ℕ} (weight : ShapeWeight N)
     (i j : Fin N) : Vec2 :=
   weight i j • (Matrix.mulVec (stress i * shape i) (positionState i j))
 
+/- NOSBPD 论文使用的应力测度为
+   `hat sigma = det(F) * tau * F^(-T)`。这里显式使用矩阵逆，
+   后续定理需要的非奇异性条件不会被定义隐藏。 -/
+noncomputable def paperStressMeasure (deformation cauchyStress : Mat2) : Mat2 :=
+  (Matrix.det deformation) •
+    (cauchyStress * Matrix.transpose (deformation⁻¹))
+
+noncomputable def paperForceState {N : ℕ} (weight : ShapeWeight N)
+    (deformation cauchyStress shape : Fin N → Mat2)
+    (positionState : Fin N → Fin N → Vec2)
+    (i j : Fin N) : Vec2 :=
+  forceState weight (fun k => paperStressMeasure (deformation k) (cauchyStress k))
+    shape positionState i j
+
+theorem paperStressMeasure_formula (deformation cauchyStress : Mat2) :
+    paperStressMeasure deformation cauchyStress =
+      (Matrix.det deformation) •
+        (cauchyStress * Matrix.transpose (deformation⁻¹)) := by
+  rfl
+
+theorem paperForceState_formula {N : ℕ} (weight : ShapeWeight N)
+    (deformation cauchyStress shape : Fin N → Mat2)
+    (positionState : Fin N → Fin N → Vec2) (i j : Fin N) :
+    paperForceState weight deformation cauchyStress shape positionState i j =
+      weight i j •
+        Matrix.mulVec
+          (((Matrix.det (deformation i)) •
+              (cauchyStress i * Matrix.transpose ((deformation i)⁻¹))) * shape i)
+          (positionState i j) := by
+  rfl
+
 def statePairForce {N : ℕ} (state : Fin N → Fin N → Vec2)
     (i j : Fin N) : Vec2 :=
   state i j - state j i

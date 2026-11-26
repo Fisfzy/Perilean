@@ -17,6 +17,8 @@ lake env lean PeriLean/SBPD/AxiomAudit.lean
 - `PeriLean.SBPD.Composite`：单层、层合板、物质点所属铺层、层内键和层间键分类。
 - `PeriLean.SBPD.Damage`：存活键体积、局部损伤、有界性和不可逆状态更新。
 - `PeriLean.SBPD.Dynamics`：离散态型运动方程、总惯性力、外力和线动量平衡。
+- `PeriLean.SBPD.Laminate`：层合板 `A/B/D` 刚度和膜力/弯矩结果函数。
+- `PeriLean.SBPD.Fracture`：PMB 断裂能反解、纤维/基体临界伸长率、界面刚度和 BK 临界能量公式。
 
 ## 当前验证状态
 
@@ -24,6 +26,8 @@ lake env lean PeriLean/SBPD/AxiomAudit.lean
 
 已证明的局部结果包括形状张量逆证书下的梯度重构恒等式、人工定义的反对称成对态力导致的离散内部合力为零、离散线动量平衡、部分正交各向异性刚度正性、零铺层角应力恒等式、Hoffman 指标的端点交换对称和局部损伤边界。
 
-以下论文结论尚未完成形式化证明：形状张量可逆性和存在性、连续积分到离散求积的一致性、论文力态与 `forceState` 的等价性、一般铺层角变换、ABD 层合板刚度、层间牵引-分离和断裂能、零能模式控制、人工阻尼与自适应动态松弛、时间积分收敛、裂纹扩展路径以及与 FEM 或试验的误差结论。
+关键参量公式已增加 Lean 定理，包括论文 `T = ω σ̂ K X` 和 `σ̂ = det(F) τ F⁻ᵀ` 的有限点展开、`A/B/D` 厚度求和及层片贡献、`M = B ε⁰ + D κ` 弯矩结果函数、三维 PMB 断裂能临界伸长率反解及其 `K` 形式、`s_f = X_T/E_1`、`s_m = Y_T/E_2` 和 `K_int = E_3/δ_int` 的恢复恒等式，以及 BK 准则的纯 I/纯 II 端点。
+
+以下论文结论尚未完成形式化证明：形状张量可逆性和存在性、连续积分到离散求积的一致性、论文连续力态与有限求和的等价性、一般铺层角变换、连续层合板积分与一般铺层输入、层间牵引-分离和断裂能、零能模式控制、人工阻尼与自适应动态松弛、时间积分收敛、裂纹扩展路径以及与 FEM 或试验的误差结论。
 
 完整性状态和逐公式证据见 `Documentation/VerificationStatus.md` 与 `Documentation/EquationMap.md`。

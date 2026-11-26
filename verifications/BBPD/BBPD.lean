@@ -5,6 +5,7 @@ import PeriLean.BBPD.Potential
 import PeriLean.BBPD.Calibration
 import PeriLean.BBPD.Dynamics
 import PeriLean.BBPD.Damage
+import PeriLean.BBPD.Moment
 
 /-!
 # BB-PD

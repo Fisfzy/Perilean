@@ -33,6 +33,35 @@ theorem pmbForce_zero_if_not_bond {N d : ℕ}
   classical
   simp [pmbForce, hnotbond]
 
+theorem pmbForce_formula_on_bond {N d : ℕ}
+    (system : ParticleSystem N d) (micromodulus criticalStretch : ℝ)
+    (alive : Fin N → Fin N → Bool)
+    (displacement : Fin N → Vec d) {i j : Fin N}
+    (hbond : isBond system i j) (halive : alive i j = true) :
+    pmbForce system micromodulus criticalStretch alive displacement i j =
+      (micromodulus * stretch system displacement i j) •
+        unitOrZero (deformedBond system displacement i j) := by
+  classical
+  simp [pmbForce, hbond, halive]
+
+theorem pmbForce_formula_current_direction {N d : ℕ}
+    (system : ParticleSystem N d) (micromodulus criticalStretch : ℝ)
+    (alive : Fin N → Fin N → Bool)
+    (displacement : Fin N → Vec d) {i j : Fin N}
+    (hbond : isBond system i j) (halive : alive i j = true)
+    (hcurrent : ‖deformedBond system displacement i j‖ ≠ 0) :
+    pmbForce system micromodulus criticalStretch alive displacement i j =
+      (micromodulus * stretch system displacement i j /
+          ‖currentPosition system displacement j - currentPosition system displacement i‖) •
+        (currentPosition system displacement j - currentPosition system displacement i) := by
+  have hcurrent' :
+      ‖currentPosition system displacement j - currentPosition system displacement i‖ ≠ 0 := by
+    rw [← deformedBond_eq_current_sub_current]
+    exact hcurrent
+  rw [pmbForce_formula_on_bond system micromodulus criticalStretch alive displacement hbond halive]
+  rw [deformedBond_eq_current_sub_current]
+  simp [unitOrZero, hcurrent', smul_smul, div_eq_mul_inv]
+
 theorem pmbForce_antisymmetric {N d : ℕ}
     (system : ParticleSystem N d) (micromodulus criticalStretch : ℝ)
     (alive : Fin N → Fin N → Bool)

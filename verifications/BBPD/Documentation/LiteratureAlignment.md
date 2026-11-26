@@ -7,6 +7,11 @@
 - `pmbForce` 对应 PMB 中由微模量、伸长率和当前键方向组成的中心键力。
 - `pmb3DMicromodulus` 和 `pmbFractureEnergy` 对应三维 PMB 的常用微模量与断裂能标定公式。
 - `localDamage` 对应以存活键体积比例定义的局部损伤指标。
+- `pmbForce_formula_on_bond` 逐项检查 `f_ij = c s_ij e_ij`，其中 `e_ij` 用总函数 `unitOrZero` 表示。
+- `pmbForce_formula_current_direction` 在当前键非零时把 `e_ij` 展开为 `(y_j-y_i)/||y_j-y_i||`，得到论文中的方向形式。
+- `pairMoment_zero_of_central` 和 `pairTorque_zero_of_central_and_antisymmetric` 检查中心键力的内部力矩消失。
+- `pmbPairTorque_zero` 将该结论直接应用到三维 PMB 力。
+- `pmbFractureEnergy_of_bulkModulus` 和 `pmbCriticalStretch_of_bulkModulus` 将三维微模量代入后得到 `G_c = 9 K s_0^2 δ / 5` 和 `s_0 = sqrt(5 G_c / (9 K δ))`。
 
 ## 本次边界修正
 
