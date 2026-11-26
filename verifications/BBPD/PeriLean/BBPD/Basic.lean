@@ -1,4 +1,5 @@
-import SolidMechanics
+import Mathlib.Analysis.InnerProductSpace.PiL2
+import Mathlib.Tactic
 
 namespace PeriLean
 namespace BBPD

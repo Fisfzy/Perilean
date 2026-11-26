@@ -5,7 +5,7 @@ PeriLean 是基于 Lean 4 和 Mathlib 的近场动力学形式化验证项目。
 当前仓库包含：
 
 - `packages/SolidMechanics`：固体力学基础验证包。
-- `verifications/BBPD`：键型近场动力学 BB-PD 基础验证包，依赖 `SolidMechanics`。
+- `verifications/BBPD`：独立的键型近场动力学 BB-PD 基础验证包，直接依赖固定版本的 Mathlib。
 
 ## BBPD 构建
 

@@ -6,8 +6,9 @@ defaultTargets = ["PeriLean", "BBPD"]
 maxHeartbeats = 1000000
 
 [[require]]
-name = "SolidMechanics"
-path = "../../packages/SolidMechanics"
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.36.0"
 
 [[lean_lib]]
 name = "PeriLean"

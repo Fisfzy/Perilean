@@ -10,7 +10,7 @@
 lake build
 ```
 
-包通过 Lake 路径依赖复用 `packages/SolidMechanics`。入口模块是 `BBPD`，核心模块包括：
+包通过 Lake 直接依赖固定版本的 Mathlib，不依赖仓库中的 `SolidMechanics`。入口模块是 `BBPD`，核心模块包括：
 
 - `PeriLean.BBPD.Basic`：有限粒子、参考键、当前构形、伸长率和奇异方向处理。
 - `PeriLean.BBPD.Pairwise`：通用成对力、中心力和离散内力总和。
