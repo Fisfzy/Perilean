@@ -81,6 +81,7 @@ f_ij = c * s_ij / ||y_j - y_i|| • (y_j - y_i)
 ```
 
 三维 `pmbPairTorque_zero` 进一步证明中心键力和反对称性导致成对内部弯矩为零。
+`pmbWeightedTotalPairTorque_zero` 将该结果提升到体积加权的有限粒子总成对力矩。
 
 与 Silling–Askari 2005 的 PMB 公式逐项对应：文献中的标量函数为 `g(s) = c*s`，历史因子为 `l_ij`，向量成对力为 `g(s_ij) l_ij e_ij`。本包把 `l_ij` 表示为布尔状态 `alive_ij`，并把 `e_ij` 表示为 `unitOrZero zeta_ij`。在当前键长非零且键存活时，`pmbForce` 与文献公式完全相同。`pmbForce_norm` 还验证了其模长为 `|c*s_ij|`。
 
@@ -91,6 +92,11 @@ alive_new_ij = alive_old_ij and (s_ij <= s0)
 ```
 
 因此 `s_ij = s0` 时仍保持，只有 `s_ij > s0` 时断裂。更新定理只允许 `true` 变成 `false`，不允许断键恢复。
+`pmbUpdateAlive_symmetric` 证明在初始状态端点对称时，断键更新仍保持端点对称。
+因此 `pmbUpdateAlive_totalInternalForce_zero` 可以直接证明断键后的 PMB 离散内力仍为零。
+
+对单键模型，`bondStretch_isometry`、`bondForce_objective` 和
+`bondPotential_objective` 证明线性等距变换下伸长率和势能不变、键力按等距映射协变。
 
 ## 6. 能量和标定边界
 

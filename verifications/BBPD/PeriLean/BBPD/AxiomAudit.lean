@@ -1,6 +1,8 @@
 import PeriLean.BBPD.Moment
 import PeriLean.BBPD.PMB
 import PeriLean.BBPD.Calibration
+import PeriLean.BBPD.Objectivity
+import PeriLean.BBPD.Damage
 
 /-!
 This module is an audit entry point. Run
@@ -14,6 +16,13 @@ to print the kernel-level axiom dependencies of the core theorems.
 #print axioms PeriLean.BBPD.pmbUpdateAlive_is_irreversible
 #print axioms PeriLean.BBPD.pairTorque_zero_of_central_and_antisymmetric
 #print axioms PeriLean.BBPD.pmbPairTorque_zero
+#print axioms PeriLean.BBPD.pmbWeightedTotalPairTorque_zero
 #print axioms PeriLean.BBPD.pmbForce_formula_current_direction
 #print axioms PeriLean.BBPD.pmbFractureEnergy_of_bulkModulus
 #print axioms PeriLean.BBPD.pmbCriticalStretch_of_bulkModulus
+#print axioms PeriLean.BBPD.pmbUpdateAlive_symmetric
+#print axioms PeriLean.BBPD.pmbUpdateAlive_totalInternalForce_zero
+#print axioms PeriLean.BBPD.localDamage_mono
+#print axioms PeriLean.BBPD.bondStretch_isometry
+#print axioms PeriLean.BBPD.bondForce_objective
+#print axioms PeriLean.BBPD.bondPotential_objective

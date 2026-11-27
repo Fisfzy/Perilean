@@ -31,11 +31,18 @@
 | C09 | PMB 力函数展开到当前键方向 | `pmbForce_formula_current_direction` | C08、当前键非零 | 已证明 |
 | C10 | 中心成对力的内部力矩为零 | `pairTorque_zero_of_central_and_antisymmetric` | 三维叉积、反对称和中心力 | 已证明 |
 | C11 | PMB 三维成对力矩为零 | `pmbPairTorque_zero` | C02、C03、三维表示转换 | 已证明 |
+| C12 | PMB 体积加权总成对力矩为零 | `pmbWeightedTotalPairTorque_zero` | C10、体积加权有限和 | 已证明 |
+| C13 | 断键更新保持端点对称 | `pmbUpdateAlive_symmetric` | horizon 对称、伸长率对称、初始状态对称 | 已证明 |
+| C14 | 断键后的 PMB 离散内力仍平衡 | `pmbUpdateAlive_totalInternalForce_zero` | C13、P05 | 已证明 |
+| O01 | 键伸长率的等距不变性 | `bondStretch_isometry` | 线性等距同构 | 已证明 |
+| O02 | 键力的等距协变性 | `bondForce_objective` | O01、单位方向协变性 | 已证明 |
+| O03 | 键势能的等距不变性 | `bondPotential_objective` | O01 | 已证明 |
 | D01 | PMB 更新保留存活键的旧状态 | `pmbUpdateAlive_implies_old_alive` | A11 | 已证明 |
 | D02 | PMB 更新不可逆 | `pmbUpdateAlive_is_irreversible` | D01 | 已证明 |
 | D03 | 存活键体积不超过邻域体积 | `activeVolume_le_neighborVolume` | A04, 有限权重 | 已证明 |
 | D04 | 局部损伤非负 | `localDamage_nonneg` | D03, 邻域体积正 | 已证明 |
 | D05 | 局部损伤不超过一 | `localDamage_le_one` | A04 | 已证明 |
+| D06 | 损伤变量随存活键集合减少而单调增加 | `localDamage_mono` | `aliveSub`、邻域体积为正 | 已证明 |
 | Q04 | 离散运动方程 | `satisfiesDiscreteEquation` | 离散动力学 | 已定义 |
 | Q05 | 离散线动量平衡 | `discrete_linear_momentum_balance` | Q04, P05 | 已证明 |
 | E01 | 微势能对相对位移的梯度等于键力 | `microPotential_fderiv` | A13, A14 | 后续 |

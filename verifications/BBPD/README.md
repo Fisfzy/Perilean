@@ -23,6 +23,8 @@ lake build
 
 文献对应关系见 `Documentation/LiteratureAlignment.md`。PMB 力、势能和断键状态均显式受 `isBond` 的 horizon 邻域约束。
 
+完整的阶段性状态见 `Documentation/VerificationStatus.md`。该文件将参考报告中的六项核心目标与当前 Lean 定理逐项对应。
+
 ## 当前已形式化的局部内容
 
 - 交换粒子后参考键、相对位移和变形键的反对称性。
@@ -37,10 +39,13 @@ lake build
 - PMB 力函数展开为 `c*s*(y_j-y_i)/||y_j-y_i||` 的当前构形形式。
 - 三维中心成对力的内部力矩为零。
 - 三维 PMB 力的成对弯矩为零。
+- 体积加权有限粒子总成对力矩为零。
+- 对称断键更新和断裂后的离散内力平衡。
+- 单键伸长率、键力和键势能的等距客观性。
 - `c = 18 K / (pi * delta^4)`、`G_c = pi*c*s0^2*delta^5/10`，以及代入微模量后的 `G_c = 9 K s0^2 delta/5` 和 `s0 = sqrt(5 G_c/(9 K delta))`。
 - 离散运动方程推出总惯性力等于总外力。
 - 局部损伤在有邻域时属于 `[0,1]`，无邻域时按零定义。
 
-连续体积分、Bochner 积分、连续能量守恒、局部极限和时间积分稳定性暂未作为已证明结论发布，具体边界见 `Documentation/BBPD-Specification.md`。
+微势能梯度、连续体积分、Bochner 积分、连续能量守恒、泊松比标定、局部极限和时间积分稳定性暂未作为已证明结论发布，具体边界见 `Documentation/BBPD-Specification.md`。
 
 三维微模量和断裂能模块目前只验证文献公式的代数定义和反解恒等式，不等于完成球坐标积分、能量等效和裂面几何积分的论文级证明。完整边界见 `Documentation/LiteratureAlignment.md`。

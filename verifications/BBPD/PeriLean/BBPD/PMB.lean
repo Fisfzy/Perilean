@@ -157,5 +157,47 @@ theorem pmbUpdateAlive_is_irreversible {N d : ℕ}
   intro h
   exact pmbUpdateAlive_implies_old_alive system criticalStretch alive displacement h
 
+theorem pmbUpdateAlive_symmetric {N d : ℕ}
+    (system : ParticleSystem N d) (criticalStretch : ℝ)
+    (alive : Fin N → Fin N → Bool)
+    (displacement : Fin N → Vec d)
+    (halive : ∀ i j, alive i j = alive j i) (i j : Fin N) :
+    pmbUpdateAlive system criticalStretch alive displacement i j =
+      pmbUpdateAlive system criticalStretch alive displacement j i := by
+  classical
+  by_cases hb : isBond system i j
+  · have hbj : isBond system j i := (isBond_swap_iff system i j).1 hb
+    by_cases ha : alive i j = true
+    · have haj : alive j i = true := by
+        rw [← halive i j]
+        exact ha
+      simp [pmbUpdateAlive, hb, hbj, ha, haj, stretch_swap]
+    · have haj : alive j i ≠ true := by
+        intro h
+        apply ha
+        rw [halive i j]
+        exact h
+      simp [pmbUpdateAlive, hb, hbj, ha, haj]
+  · have hbj : ¬ isBond system j i := by
+      intro h
+      exact hb ((isBond_swap_iff system i j).2 h)
+    simp [pmbUpdateAlive, hb, hbj]
+
+theorem pmbUpdateAlive_totalInternalForce_zero {N d : ℕ}
+    (system : ParticleSystem N d) (micromodulus criticalStretch : ℝ)
+    (alive : Fin N → Fin N → Bool)
+    (displacement : Fin N → Vec d)
+    (halive : ∀ i j, alive i j = alive j i) :
+    totalInternalForce system
+      (pmbPairForceLaw system micromodulus criticalStretch
+        (fun i j => pmbUpdateAlive system criticalStretch alive displacement i j)
+        displacement (fun i j => pmbUpdateAlive_symmetric system criticalStretch alive
+          displacement halive i j)) = 0 := by
+  exact totalInternalForce_zero system
+    (pmbPairForceLaw system micromodulus criticalStretch
+      (fun i j => pmbUpdateAlive system criticalStretch alive displacement i j)
+      displacement (fun i j => pmbUpdateAlive_symmetric system criticalStretch alive
+        displacement halive i j))
+
 end BBPD
 end PeriLean

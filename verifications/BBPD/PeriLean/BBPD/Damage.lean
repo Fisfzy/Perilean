@@ -17,6 +17,9 @@ noncomputable def localDamage {N d : ℕ} (system : ParticleSystem N d)
   if neighborVolume system i = 0 then 0 else
     1 - activeVolume system alive i / neighborVolume system i
 
+def aliveSub {N : ℕ} (later earlier : Fin N → Fin N → Bool) : Prop :=
+  ∀ i j, later i j = true → earlier i j = true
+
 theorem activeVolume_nonneg {N d : ℕ} (system : ParticleSystem N d)
     (alive : Fin N → Fin N → Bool) (i : Fin N) :
     0 ≤ activeVolume system alive i := by
@@ -83,6 +86,39 @@ theorem localDamage_le_one {N d : ℕ} (system : ParticleSystem N d)
     have hdiv : 0 ≤ activeVolume system alive i / neighborVolume system i := by
       exact div_nonneg hnonneg hneighbor
     linarith
+
+theorem activeVolume_mono {N d : ℕ} (system : ParticleSystem N d)
+    {earlier later : Fin N → Fin N → Bool} (hsub : aliveSub later earlier)
+    (i : Fin N) :
+    activeVolume system later i ≤ activeVolume system earlier i := by
+  classical
+  unfold aliveSub at hsub
+  unfold activeVolume
+  apply Finset.sum_le_sum
+  intro j hj
+  by_cases hb : isBond system i j
+  · by_cases hl : later i j = true
+    · have he : earlier i j = true := hsub i j hl
+      simp [hb, hl, he]
+    · by_cases he : earlier i j = true
+      · simp [hb, hl, he]
+        exact (system.volume_pos j).le
+      · simp [hb, hl, he]
+  · simp [hb]
+
+theorem localDamage_mono {N d : ℕ} (system : ParticleSystem N d)
+    {earlier later : Fin N → Fin N → Bool} (hsub : aliveSub later earlier)
+    (i : Fin N) (hpositive : 0 < neighborVolume system i) :
+    localDamage system earlier i ≤ localDamage system later i := by
+  classical
+  unfold localDamage
+  simp only [ne_of_gt hpositive, ↓reduceIte]
+  have hvol : activeVolume system later i ≤ activeVolume system earlier i :=
+    activeVolume_mono system hsub i
+  have hdiv : activeVolume system later i / neighborVolume system i ≤
+      activeVolume system earlier i / neighborVolume system i := by
+    exact div_le_div_of_nonneg_right hvol (le_of_lt hpositive)
+  linarith
 
 end BBPD
 end PeriLean
