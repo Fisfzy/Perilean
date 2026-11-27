@@ -107,6 +107,14 @@ alive_new_ij = alive_old_ij and (s_ij <= s0)
 - 势能对相对位移具有相应可微性。
 - 连续模型中满足 Bochner 可积性和换序条件。
 
+当前有限离散层新增 `internalPower_eq_pairPower`，证明体积加权内力功率可以改写为成对键功率的有限双重和。这是从本构梯度定理走向离散机械能平衡的代数桥接，但它本身不替代微势能导数、时间正则性或外力功证明。
+
+当前有限离散层还证明了 `microPotential_hasGradientAt`。在参考键和当前键均非零时，
+微势能对相对位移的 Fréchet 梯度由 PMB 键力给出。`pmbBondPotential_hasGradientAt`
+把该梯度接口连接到有效 PMB 键的单键势能和力函数。`hasDerivAt_totalPairPotentialAlong`
+与 `hasDerivAt_mechanicalEnergy_balance` 提供了有限离散机械能瞬时功率的正则性接口，
+但连续 horizon 积分、时间积分和断裂耗散尚未纳入结论。
+
 三维常微模量 PMB 的文献标定为
 
 ```text

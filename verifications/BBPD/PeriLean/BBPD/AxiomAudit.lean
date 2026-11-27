@@ -3,6 +3,8 @@ import PeriLean.BBPD.PMB
 import PeriLean.BBPD.Calibration
 import PeriLean.BBPD.Objectivity
 import PeriLean.BBPD.Damage
+import PeriLean.BBPD.Energy
+import PeriLean.BBPD.Gradient
 
 /-!
 This module is an audit entry point. Run
@@ -23,6 +25,10 @@ to print the kernel-level axiom dependencies of the core theorems.
 #print axioms PeriLean.BBPD.pmbUpdateAlive_symmetric
 #print axioms PeriLean.BBPD.pmbUpdateAlive_totalInternalForce_zero
 #print axioms PeriLean.BBPD.localDamage_mono
+#print axioms PeriLean.BBPD.internalPower_eq_pairPower
+#print axioms PeriLean.BBPD.fderiv_norm_apply
+#print axioms PeriLean.BBPD.microPotential_hasGradientAt
+#print axioms PeriLean.BBPD.pmbBondPotential_hasGradientAt
 #print axioms PeriLean.BBPD.bondStretch_isometry
 #print axioms PeriLean.BBPD.bondForce_objective
 #print axioms PeriLean.BBPD.bondPotential_objective

@@ -45,8 +45,9 @@
 | D06 | 损伤变量随存活键集合减少而单调增加 | `localDamage_mono` | `aliveSub`、邻域体积为正 | 已证明 |
 | Q04 | 离散运动方程 | `satisfiesDiscreteEquation` | 离散动力学 | 已定义 |
 | Q05 | 离散线动量平衡 | `discrete_linear_momentum_balance` | Q04, P05 | 已证明 |
-| E01 | 微势能对相对位移的梯度等于键力 | `microPotential_fderiv` | A13, A14 | 后续 |
-| E02 | 离散弹性能量恒等式 | `discrete_energy_balance` | E01, 时间正则性 | 后续 |
+| E01 | 微势能对相对位移的梯度等于键力 | `fderiv_norm_apply`, `microPotential_fderiv_apply`, `microPotential_hasGradientAt`, `pmbBondPotential_hasGradientAt` | A13, A14、参考键和当前键非零 | 已证明 |
+| E02 | 有限离散内部功率等于成对力功率 | `internalPower_eq_pairPower` | P01、有限和、内积双线性 | 已证明 |
+| E03 | 离散总机械能的瞬时功率接口 | `hasDerivAt_totalPairPotentialAlong`, `hasDerivAt_mechanicalEnergy_balance` | E01、E02、时间正则性、动能导数 | 已证明（接口） |
 | M01 | 三维 PMB 微模量公式定义 | `pmb3DMicromodulus` | A19, 文献标定结果 | 已定义 |
 | M02 | PMB 断裂能公式定义 | `pmbFractureEnergy` | 文献裂面积分结果 | 已定义 |
 | M03 | 临界伸长率反解 | `pmbFractureEnergy_of_criticalStretch` | M02, 正性 | 已证明 |

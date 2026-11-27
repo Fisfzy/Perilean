@@ -20,6 +20,9 @@ lake build
 - `PeriLean.BBPD.Dynamics`：离散运动方程谓词、惯性力和外力平衡。
 - `PeriLean.BBPD.Damage`：邻域体积、存活键体积和局部损伤定义及有界性。
 - `PeriLean.BBPD.Moment`：三维成对力矩、中心力矩为零和角动量接口。
+- `PeriLean.BBPD.Objectivity`：单键等距客观性。
+- `PeriLean.BBPD.Energy`：有限离散内部功率与成对力功率恒等式。
+- `PeriLean.BBPD.Gradient`：范数的 Fréchet 导数、微势能梯度与 PMB 键力一致性。
 
 文献对应关系见 `Documentation/LiteratureAlignment.md`。PMB 力、势能和断键状态均显式受 `isBond` 的 horizon 邻域约束。
 
@@ -42,10 +45,13 @@ lake build
 - 体积加权有限粒子总成对力矩为零。
 - 对称断键更新和断裂后的离散内力平衡。
 - 单键伸长率、键力和键势能的等距客观性。
+- 有限离散内部功率与成对力功率恒等式。
+- 参考键和当前键非零条件下，微势能梯度等于 PMB 键力。
+- 有限离散势能导数和机械能瞬时功率接口。
 - `c = 18 K / (pi * delta^4)`、`G_c = pi*c*s0^2*delta^5/10`，以及代入微模量后的 `G_c = 9 K s0^2 delta/5` 和 `s0 = sqrt(5 G_c/(9 K delta))`。
 - 离散运动方程推出总惯性力等于总外力。
 - 局部损伤在有邻域时属于 `[0,1]`，无邻域时按零定义。
 
-微势能梯度、连续体积分、Bochner 积分、连续能量守恒、泊松比标定、局部极限和时间积分稳定性暂未作为已证明结论发布，具体边界见 `Documentation/BBPD-Specification.md`。
+连续体积分、Bochner 积分、连续能量守恒、泊松比标定、局部极限和时间积分稳定性暂未作为已证明结论发布，具体边界见 `Documentation/BBPD-Specification.md`。
 
 三维微模量和断裂能模块目前只验证文献公式的代数定义和反解恒等式，不等于完成球坐标积分、能量等效和裂面几何积分的论文级证明。完整边界见 `Documentation/LiteratureAlignment.md`。
